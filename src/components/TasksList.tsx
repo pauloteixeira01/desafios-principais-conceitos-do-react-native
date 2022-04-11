@@ -6,7 +6,6 @@ import {
   View,
   Text,
   StyleSheet,
-  FlatListProps,
 } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 
@@ -48,35 +47,23 @@ export function TasksList({
                 onPress={() => toggleTaskDone(item.id)}
                 //TODO - use onPress (toggle task) prop
               >
-                {item.done ? (
-                  <>
-                    <View
-                      testID={`marker-${index}`}
-                      style={styles.taskMarkerDone}
-                      //TODO - use style prop
-                    >
-                      {item.done && (
-                        <Icon name="check" size={12} color="#FFF" />
-                      )}
-                    </View>
+                <>
+                  <View
+                    testID={`marker-${index}`}
+                    style={
+                      item.done ? styles.taskMarkerDone : styles.taskMarker
+                    }
+                    //TODO - use style prop
+                  >
+                    {item.done && <Icon name="check" size={12} color="#FFF" />}
+                  </View>
 
-                    <Text style={styles.taskTextDone}>{item.title}</Text>
-                  </>
-                ) : (
-                  <>
-                    <View
-                      testID={`marker-${index}`}
-                      style={styles.taskMarker}
-                      //TODO - use style prop
-                    >
-                      {item.done && (
-                        <Icon name="check" size={12} color="#FFF" />
-                      )}
-                    </View>
-
-                    <Text style={styles.taskText}>{item.title}</Text>
-                  </>
-                )}
+                  <Text
+                    style={item.done ? styles.taskTextDone : styles.taskText}
+                  >
+                    {item.title}
+                  </Text>
+                </>
               </TouchableOpacity>
             </View>
 
